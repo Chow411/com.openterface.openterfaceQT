@@ -14,22 +14,58 @@ modules:
   - shared-modules/libusb/libusb.json
 
   - name: openterfaceQT
-    buildsystem: qmake
+    buildsystem: cmake-ninja
     config-opts:
-      - "LIBS+=-L/app/lib -lusb-1.0"
-      - "INCLUDEPATH+=/app/include/libusb-1.0"
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DFFMPEG_PKG_CONFIG=ON"
+      - "-DQUICK_COMPILER=OFF"
+      - "-DOPENTERFACE_BUILD_STATIC=OFF"
+      - "-DUSE_SHARED_FFMPEG=ON"
+      - "-DCMAKE_FIND_LIBRARY_SUFFIXES=.so"
+      - "-DCMAKE_FIND_STATIC_PREFER=OFF"
+      - "-DENABLE_QT_DEPLOY=OFF"
     sources:
-      - type: git
-        url: https://github.com/TechxArtisanStudio/Openterface_QT.git
-        tag: 0.3.19
-        commit: 1ddf869a4a55864304f3da214f0191a98fa342ee
+      - type: dir
+        path: ../Openterface_QT
  
-    build-options:
-      env:
-        QT_SELECT: qt6
+build-options:
+  build-packages:
+    - libXrender-devel
+    - libX11-devel
+    - libXext-devel
+    - xorg-x11-proto-devel
+    - xcb-util-cursor-devel
+    - xcb-util-renderutil-devel
+    - xcb-util-image-devel
+    - xcb-util-xrm-devel
+    - libudev-devel
+    - libv4l-devel
+    - orc-devel
+    - mesa-libGL-devel
+    - expat-devel
+    - fontconfig-devel
+    - freetype-devel
+    - bzip2-devel
+    - libva-devel
+    - libvdpau-devel
+    - gstreamer1-devel
+    - gstreamer1-plugins-base-devel
+    - gstreamer1-plugins-good-devel
+    - gstreamer1-libav
+    - patchelf
+  env:
+    QT_SELECT: qt6
+    PKG_CONFIG_PATH: /usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
+    PKG_CONFIG_LIBDIR: /usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
+
+
     post-install:
       - install -Dm755 openterfaceQT /app/bin/openterfaceQT
       - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
       - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
       - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
+
+cleanup-commands:
+  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+  - mkdir -p ${FLATPAK_DEST}/lib/gstreamer
     
