@@ -1,5 +1,4 @@
 app-id: com.openterface.openterfaceQT
-version: "0.5.8"
 runtime: org.kde.Platform
 runtime-version: "6.9"
 sdk: org.kde.Sdk
