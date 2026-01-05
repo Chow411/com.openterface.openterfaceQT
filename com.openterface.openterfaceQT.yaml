@@ -31,39 +31,36 @@ modules:
         url: https://github.com/TechxArtisanStudio/Openterface_QT
         commit: 09fae3a59289d9e4bbbdf038f1dca54d682c3035
         tag: "0.5.8"
- 
-build-options:
-  build-packages:
-    - libjpeg-turbo-devel
-    - libXrender-devel
-    - libX11-devel
-    - libXext-devel
-    - xorg-x11-proto-devel
-    - xcb-util-cursor-devel
-    - xcb-util-renderutil-devel
-    - xcb-util-image-devel
-    - xcb-util-xrm-devel
-    - libudev-devel
-    - libv4l-devel
-    - orc-devel
-    - mesa-libGL-devel
-    - expat-devel
-    - fontconfig-devel
-    - freetype-devel
-    - bzip2-devel
-    - libva-devel
-    - libvdpau-devel
-    - gstreamer1-devel
-    - gstreamer1-plugins-base-devel
-    - gstreamer1-plugins-good-devel
-    - gstreamer1-libav
-    - patchelf
-  env:
-    QT_SELECT: qt6
-    PKG_CONFIG_PATH: /usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
-    PKG_CONFIG_LIBDIR: /usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
-
-
+    build-options:
+      build-packages:
+        - libjpeg-turbo-devel
+        - libXrender-devel
+        - libX11-devel
+        - libXext-devel
+        - xorg-x11-proto-devel
+        - xcb-util-cursor-devel
+        - xcb-util-renderutil-devel
+        - xcb-util-image-devel
+        - xcb-util-xrm-devel
+        - libudev-devel
+        - libv4l-devel
+        - orc-devel
+        - mesa-libGL-devel
+        - expat-devel
+        - fontconfig-devel
+        - freetype-devel
+        - bzip2-devel
+        - libva-devel
+        - libvdpau-devel
+        - gstreamer1-devel
+        - gstreamer1-plugins-base-devel
+        - gstreamer1-plugins-good-devel
+        - gstreamer1-libav
+        - patchelf
+      env:
+        - "QT_SELECT=qt6"
+        - "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig"
+        - "PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig"
     post-install:
       - install -Dm755 openterfaceQT /app/bin/openterfaceQT
       - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
