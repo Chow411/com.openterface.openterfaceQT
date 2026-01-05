@@ -1,4 +1,5 @@
 app-id: com.openterface.openterfaceQT
+version: "0.5.8"
 runtime: org.kde.Platform
 runtime-version: "6.9"
 sdk: org.kde.Sdk
@@ -17,6 +18,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DHAVE_LIBJPEG_TURBO=ON"
       - "-DFFMPEG_PKG_CONFIG=ON"
       - "-DQUICK_COMPILER=OFF"
       - "-DOPENTERFACE_BUILD_STATIC=OFF"
@@ -25,11 +27,14 @@ modules:
       - "-DCMAKE_FIND_STATIC_PREFER=OFF"
       - "-DENABLE_QT_DEPLOY=OFF"
     sources:
-      - type: dir
-        path: ../Openterface_QT
+      - type: git
+        url: https://github.com/TechxArtisanStudio/Openterface_QT
+        commit: 09fae3a59289d9e4bbbdf038f1dca54d682c3035
+        tag: "0.5.8"
  
 build-options:
   build-packages:
+    - libjpeg-turbo-devel
     - libXrender-devel
     - libX11-devel
     - libXext-devel
