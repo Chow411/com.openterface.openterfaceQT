@@ -33,8 +33,8 @@ modules:
     build-options:
       env:
         - "QT_SELECT=qt6"
-        - "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig"
-        - "PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig"
+        - "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/${FLATPAK_ARCH}-linux-gnu/pkgconfig"
+        - "PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/${FLATPAK_ARCH}-linux-gnu/pkgconfig"
     post-install:
       - install -Dm755 openterfaceQT /app/bin/openterfaceQT
       - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
