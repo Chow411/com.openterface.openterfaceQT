@@ -14,22 +14,33 @@ modules:
   - shared-modules/libusb/libusb.json
 
   - name: openterfaceQT
-    buildsystem: qmake
+    buildsystem: cmake-ninja
     config-opts:
-      - "LIBS+=-L/app/lib -lusb-1.0"
-      - "INCLUDEPATH+=/app/include/libusb-1.0"
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DHAVE_LIBJPEG_TURBO=ON"
+      - "-DFFMPEG_PKG_CONFIG=ON"
+      - "-DQUICK_COMPILER=OFF"
+      - "-DOPENTERFACE_BUILD_STATIC=OFF"
+      - "-DUSE_SHARED_FFMPEG=ON"
+      - "-DCMAKE_FIND_LIBRARY_SUFFIXES=.so"
+      - "-DCMAKE_FIND_STATIC_PREFER=OFF"
+      - "-DENABLE_QT_DEPLOY=OFF"
     sources:
       - type: git
-        url: https://github.com/TechxArtisanStudio/Openterface_QT.git
-        tag: 0.3.19
-        commit: 1ddf869a4a55864304f3da214f0191a98fa342ee
- 
+        url: https://github.com/TechxArtisanStudio/Openterface_QT
+        commit: e19cf454a0c1cf148e1f402f38b85de38ad7f7f6
+        tag: "0.5.9"
     build-options:
       env:
-        QT_SELECT: qt6
+        - "QT_SELECT=qt6"
+        - "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig"
+        - "PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig"
     post-install:
       - install -Dm755 openterfaceQT /app/bin/openterfaceQT
       - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
       - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
       - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
-    
+
+cleanup-commands:
+  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+  - mkdir -p ${FLATPAK_DEST}/lib/gstreamer
