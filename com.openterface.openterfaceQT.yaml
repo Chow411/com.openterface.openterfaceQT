@@ -1,58 +1,54 @@
 app-id: com.openterface.openterfaceQT
 runtime: org.kde.Platform
-runtime-version: "6.9"
+runtime-version: '6.9'
 sdk: org.kde.Sdk
 command: openterfaceQT
 finish-args:
-  - --share=ipc
-  - --share=network
-  - --socket=x11
-  - --device=all
-  - --device=dri
-  - --filesystem=/run/udev:ro
-
+- --share=ipc
+- --share=network
+- --socket=x11
+- --device=all
+- --device=dri
+- --filesystem=/run/udev:ro
 modules:
-  - shared-modules/libusb/libusb.json
-
-  - name: libjpeg-turbo
-    buildsystem: cmake-ninja
-    config-opts:
-      - "-DCMAKE_BUILD_TYPE=Release"
-      - "-DENABLE_STATIC=OFF"
-      - "-DENABLE_SHARED=ON"
-    sources:
-      - type: archive
-        url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/3.0.4.tar.gz
-        sha256: 0270f9496ad6d69e743f1e7b9e3e9398f5b4d606b6a47744df4b73df50f62e38
-
-  - name: openterfaceQT
-    buildsystem: cmake-ninja
-    config-opts:
-      - "-DCMAKE_BUILD_TYPE=Release"
-      - "-DHAVE_LIBJPEG_TURBO=ON"
-      - "-DFFMPEG_PKG_CONFIG=ON"
-      - "-DQUICK_COMPILER=OFF"
-      - "-DOPENTERFACE_BUILD_STATIC=OFF"
-      - "-DUSE_SHARED_FFMPEG=ON"
-      - "-DCMAKE_FIND_LIBRARY_SUFFIXES=.so"
-      - "-DCMAKE_FIND_STATIC_PREFER=OFF"
-      - "-DENABLE_QT_DEPLOY=OFF"
-    sources:
-      - type: git
-        url: https://github.com/TechxArtisanStudio/Openterface_QT
-        commit: f206deedb65d48962fefeab5ab5037c124a4922b
-        tag: "0.5.9"
-    build-options:
-      env:
-        - "QT_SELECT=qt6"
-        - "PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig"
-        - "PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig"
-    post-install:
-      - install -Dm755 openterfaceQT /app/bin/openterfaceQT
-      - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
-      - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
-      - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
-
+- shared-modules/libusb/libusb.json
+- name: libjpeg-turbo
+  buildsystem: cmake-ninja
+  config-opts:
+  - -DCMAKE_BUILD_TYPE=Release
+  - -DENABLE_STATIC=OFF
+  - -DENABLE_SHARED=ON
+  sources:
+  - type: archive
+    url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/3.0.4.tar.gz
+    sha256: 0270f9496ad6d69e743f1e7b9e3e9398f5b4d606b6a47744df4b73df50f62e38
+- name: openterfaceQT
+  buildsystem: cmake-ninja
+  config-opts:
+  - -DCMAKE_BUILD_TYPE=Release
+  - -DHAVE_LIBJPEG_TURBO=ON
+  - -DFFMPEG_PKG_CONFIG=ON
+  - -DQUICK_COMPILER=OFF
+  - -DOPENTERFACE_BUILD_STATIC=OFF
+  - -DUSE_SHARED_FFMPEG=ON
+  - -DCMAKE_FIND_LIBRARY_SUFFIXES=.so
+  - -DCMAKE_FIND_STATIC_PREFER=OFF
+  - -DENABLE_QT_DEPLOY=OFF
+  sources:
+  - type: git
+    url: https://github.com/TechxArtisanStudio/Openterface_QT
+    commit: f206deedb65d48962fefeab5ab5037c124a4922b
+    tag: 0.5.9
+  build-options:
+    env:
+    - QT_SELECT=qt6
+    - PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig
+    - PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig
+  post-install:
+  - install -Dm755 openterfaceQT /app/bin/openterfaceQT
+  - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
+  - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
+  - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
 cleanup-commands:
-  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
-  - mkdir -p ${FLATPAK_DEST}/lib/gstreamer
+- mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+- mkdir -p ${FLATPAK_DEST}/lib/gstreamer
