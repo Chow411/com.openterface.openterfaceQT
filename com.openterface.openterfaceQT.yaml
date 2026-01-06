@@ -14,31 +14,6 @@ modules:
   - shared-modules/libusb/libusb.json
 
   - name: openterfaceQT
-    build-packages:
-      - libjpeg-turbo-devel
-      - libXrender-devel
-      - libX11-devel
-      - libXext-devel
-      - xorg-x11-proto-devel
-      - xcb-util-cursor-devel
-      - xcb-util-renderutil-devel
-      - xcb-util-image-devel
-      - xcb-util-xrm-devel
-      - libudev-devel
-      - libv4l-devel
-      - orc-devel
-      - mesa-libGL-devel
-      - expat-devel
-      - fontconfig-devel
-      - freetype-devel
-      - bzip2-devel
-      - libva-devel
-      - libvdpau-devel
-      - gstreamer1-devel
-      - gstreamer1-plugins-base-devel
-      - gstreamer1-plugins-good-devel
-      - gstreamer1-libav
-      - patchelf
     buildsystem: cmake-ninja
     config-opts:
       - "-DCMAKE_BUILD_TYPE=Release"
