@@ -36,8 +36,8 @@ modules:
   sources:
   - type: git
     url: https://github.com/TechxArtisanStudio/Openterface_QT
-    commit: f206deedb65d48962fefeab5ab5037c124a4922b
-    tag: 0.5.9
+    commit: c2e94785396e73823bb64db511c673ad657b344d
+    tag: 0.5.10
   build-options:
     env:
     - QT_SELECT=qt6
@@ -48,6 +48,3 @@ modules:
   - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
   - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
   - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
-cleanup-commands:
-- mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
-- mkdir -p ${FLATPAK_DEST}/lib/gstreamer
