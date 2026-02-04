@@ -36,8 +36,8 @@ modules:
   sources:
   - type: git
     url: https://github.com/TechxArtisanStudio/Openterface_QT
-    commit: c2e94785396e73823bb64db511c673ad657b344d
-    tag: 0.5.10
+    commit: 083b04009cd4a868e215883103041a910181190b
+    tag: 0.5.13
   build-options:
     env:
     - QT_SELECT=qt6
