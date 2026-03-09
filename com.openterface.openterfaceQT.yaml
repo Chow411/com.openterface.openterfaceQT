@@ -25,8 +25,8 @@ modules:
   sources:
   - type: git
     url: https://github.com/TechxArtisanStudio/Openterface_QT
-    commit: fa84a257ab45e5f372bb72e898340215ffde71d1
-    tag: 0.5.17
+    commit: 06ec851b634924981b30cbd5e39a02710941e395
+    tag: 0.5.18
   build-options:
     env:
     - QT_SELECT=qt6
@@ -34,6 +34,6 @@ modules:
     - PKG_CONFIG_LIBDIR=/usr/lib64/pkgconfig:/usr/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/aarch64-linux-gnu/pkgconfig
   post-install:
   - install -Dm755 openterfaceQT /app/bin/openterfaceQT
-  - install -Dm644 com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
-  - install -Dm644 com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
+  - install -Dm644 packaging/com.openterface.openterfaceQT.desktop /app/share/applications/com.openterface.openterfaceQT.desktop
+  - install -Dm644 packaging/com.openterface.openterfaceQT.metainfo.xml /app/share/metainfo/com.openterface.openterfaceQT.metainfo.xml
   - install -Dm644 images/icon_128.png /app/share/icons/hicolor/128x128/apps/com.openterface.openterfaceQT.png
